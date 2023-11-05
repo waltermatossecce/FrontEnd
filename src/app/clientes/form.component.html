@@ -1,0 +1,57 @@
+<ul class="alert alert-danger" >
+   <li *ngFor="let err of errores">
+      {{err}}
+   </li>
+</ul>
+
+<div class="card bg-dark text-white my-3">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+ 
+     <form #ClienteForm="ngForm">
+         <div class="form-group row">
+            <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+            <div class="col-sm-6">
+             <input type="text" class="form-control" name="nombre" [(ngModel)]="cliente.nombre" #nombre="ngModel"><!-- required minlength="4"-->
+               <div *ngIf="nombre?.touched && nombre?.invalid" class="alert alert-danger">
+                   <div *ngIf="nombre.errors?.['required']"> El nombre es requerido</div>
+                   <div *ngIf="nombre.errors?.['minlength']">El nombre debe tener al menos 4 caracteres</div>
+              </div>
+
+            </div>
+         </div>
+ 
+         <div class="form-group row">
+             <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
+             <div class="col-sm-6">
+              <input type="text" class="form-control" name="apellido" [(ngModel)]="cliente.apellido" #apellido="ngModel"><!--required minlength="4"-->
+               <div *ngIf="apellido?.touched && apellido?.invalid" class="alert alert-danger">
+                    <div *ngIf="apellido.errors?.['required']"> El apellido es requerido</div>
+                    <div *ngIf="apellido.errors?.['minlength']">El apellido debe tener al menos 4 caracteres</div>
+               </div>
+
+            
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="email" class="col-form-label col-sm-2">Email</label>
+            <div class="col-sm-6">
+             <input type="text" class="form-control" name="email" [(ngModel)]="cliente.email" #email="ngModel"><!--required minlength="10"-->
+             <div *ngIf="email?.touched && email?.invalid" class="alert alert-danger">
+                    <div *ngIf="email.errors?.['required']"> El email es requerido</div>
+                    <div *ngIf="email.errors?.['minlength']">El email debe tener al menos 10 caracteres</div>
+             </div>
+            </div>
+         </div>
+
+          <div class="my-2">
+             <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!cliente.id else elseBlock">Crear</button>
+
+             <ng-template #elseBlock>
+                <button class="btn btn-primary" role="button" (click)="update()">Editar</button>
+             </ng-template>
+          </div>
+     </form>
+    </div>
+ </div>

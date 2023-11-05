@@ -1,0 +1,27 @@
+/* Estilo para los elementos de paginación */
+.page-item {
+    display: inline-block;
+    margin: 0 5px;
+  }
+  
+  /* Estilo para el enlace de la página activa */
+  .page-item.active {
+    background-color: #007BFF;
+    color: #fff;
+    border: 1px solid #007BFF;
+  }
+  
+  /* Estilo para los enlaces de página */
+  .page-link {
+    color: #007BFF;
+    text-decoration: none;
+    border: 1px solid #007BFF;
+    padding: 5px 10px;
+  }
+  
+  /* Estilo para los enlaces deshabilitados */
+  .page-link.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
