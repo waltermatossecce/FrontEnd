@@ -54,10 +54,11 @@
          </div>
 
           <div class="my-2">
-             <button mat-raised-button color="primary" role="button" (click)="create()" *ngIf="!cliente.id else elseBlock ">Crear</button>
+             <button mat-raised-button mat-raised-button color="primary" role="button" (click)="create()" *ngIf="!cliente.id else elseBlock ">Crear</button>
 
              <ng-template #elseBlock>
-                <button class="mat-icon-button" role="button" (click)="update()">Editar</button>
+               
+                <button mat-raised-button color="primary" role="button" (click)="update()">Editar</button>
              </ng-template>
           </div>
      </form>
