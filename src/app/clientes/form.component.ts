@@ -3,6 +3,7 @@ import { ClienteService } from './cliente.service';
 import { Cliente } from './cliente';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Distrito } from './Distrito';
 
 @Component({
   selector: 'app-form',
@@ -12,12 +13,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FormComponent implements OnInit {
 
   titulo:string="Crear Alumno";
+  distritos:Distrito[];
   cliente:Cliente = new Cliente; 
 
   public errores:string[];
 
   ngOnInit(): void {
-    this.cargarClientes();
+    this.activaRoute.params.subscribe( params=>{
+      let id = params['id']
+      if(id){
+        this.clienteService.getClientes(id)
+        .subscribe((x) => this.cliente=x )
+      }    
+  });
+  this.clienteService.getDistrito().subscribe(distritos=>
+    this.distritos = distritos);
+  
   }
 
 
@@ -25,18 +36,9 @@ export class FormComponent implements OnInit {
     private router:Router,private activaRoute:ActivatedRoute){}
 
 
-    cargarClientes():void{
-      this.activaRoute.params.subscribe( params=>{
-        let id = params['id']
-        if(id){
-          this.clienteService.getClientes(id)
-          .subscribe((x) => this.cliente=x )
-        }
-        
-      })
-    }
 
   create():void{
+    console.log(this.cliente);
     this.clienteService.create(this.cliente)
     .subscribe(cliente=>{
       this.router.navigate(['/clientes'])
@@ -52,6 +54,7 @@ export class FormComponent implements OnInit {
   }
 
   update():void{
+    console.log(this.cliente);
     this.clienteService.update(this.cliente)
     .subscribe( cliente => {
       this.router.navigate(['/clientes'])
@@ -64,6 +67,12 @@ export class FormComponent implements OnInit {
     })
   }
   
+  compareDistrito(o1:Distrito,o2:Distrito){
+    if(o1 == undefined && o2 == undefined){
+        return true;
+    }
+    return o1==null  || o2==null? false: o1.id===o2.id;
+  }
 
 
 }

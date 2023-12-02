@@ -1,3 +1,5 @@
+import { Distrito } from "./Distrito";
+
 export class Cliente {
 
     id:number;
@@ -6,5 +8,5 @@ export class Cliente {
     email:string;
     createAt:string;
     foto:string;
-
+    distrito:Distrito
 }

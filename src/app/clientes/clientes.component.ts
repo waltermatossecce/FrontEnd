@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService } from './detalle/modal.service';
+import { Distrito } from './Distrito';
 
 @Component({
   selector: 'app-clientes',
@@ -38,8 +39,19 @@ export class ClientesComponent implements OnInit {
       this.cliente= response.content as Cliente[]
       this.paginador = response;
     });
-  }
-    );
+  });
+
+
+
+   //map nos permite por cada cliente cambiar o modificar algo
+  this.modalService.nodificarUpload.subscribe(cliente => {
+    this.cliente = this.cliente.map(clienteOriginal => {
+      if(cliente.id == clienteOriginal.id){
+         clienteOriginal.foto = cliente.foto;
+      }
+    return clienteOriginal;
+    })
+  })
   }
 
   delete(cliente:Cliente):void{

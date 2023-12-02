@@ -53,6 +53,17 @@
            </div>
          </div>
 
+         <div class="form-group row">
+            <label for="distrito" class="col-form-label col-sm-2">Distrito</label>
+            <div class="col-sm-6">
+               <select [compareWith]="compareDistrito" class="form-control" [(ngModel)]="cliente.distrito" name="distrito" style="width: 500px;">
+                  <option [ngValue]="undefined">---Selecione distrito---</option>
+                  <option *ngFor="let distrito of distritos" [ngValue]="distrito">{{ distrito.nombre }}</option>
+                
+               </select>
+           </div>
+         </div>
+
           <div class="my-2">
              <button mat-raised-button mat-raised-button color="primary" role="button" (click)="create()" *ngIf="!cliente.id else elseBlock ">Crear</button>
 

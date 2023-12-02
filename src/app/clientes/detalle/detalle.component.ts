@@ -57,6 +57,9 @@ export class DetalleComponent implements OnInit {
               } else if (events.type === HttpEventType.Response) {
                 let response: any = events.body;
                 this.cliente = response.cliente as Cliente;
+
+                //emit emitir el cliente actualizado
+                this.modalService.nodificarUpload.emit(this.cliente);
                 Swal.fire('La foto se ha subido completamente!', response.mensaje, 'success');
               }
             },

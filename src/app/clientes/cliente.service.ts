@@ -5,6 +5,7 @@ import { Cliente } from './cliente';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { formatDate } from '@angular/common';
+import { Distrito } from './Distrito';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,11 @@ export class ClienteService {
   private httpHeader = new HttpHeaders({'Content-Type':'application/json'})
 
   constructor(private http:HttpClient,private router:Router) { }
+
+
+  getDistrito():Observable<Distrito[]>{
+    return this.http.get<Distrito[]>(this.urlEndPoint + '/distrito');
+  }
 
   getCliente(page:number):Observable<any>{
     return this.http.get(this.urlEndPoint + '/page/' + page).pipe( 

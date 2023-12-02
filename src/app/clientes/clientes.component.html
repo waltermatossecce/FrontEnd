@@ -18,6 +18,7 @@
                     <th>Apellido</th>
                     <th>Correo</th>
                     <th>Fecha de Registro</th>
+                    <th>Distrito</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -28,7 +29,7 @@
                         <img *ngIf="clientes.foto" (click)="abrirModal(clientes)"  src="http://localhost:8090/api/uploads/img/{{clientes.foto}}" alt="{{clientes.foto}}" class="img-thumbnail rounded"
                          style="width: 64px; cursor: pointer;"> 
 
-                         <img *ngIf="!clientes.foto" (click)="abrirModal(clientes)"  src="http://localhost:8090/api/uploads/images/no-usuario.png" alt="Sin foto" class="img-thumbnail rounded"
+                         <img *ngIf="!clientes.foto" (click)="abrirModal(clientes)"  src="http://localhost:8090/images/usuario.png" alt="Sin foto" class="img-thumbnail rounded"
                          style="width: 64px; cursor: pointer;"> 
                     </td>
 
@@ -36,6 +37,7 @@
                     <td>{{clientes.apellido | uppercase}}</td>
                     <td>{{clientes.email}}</td>
                     <td>{{clientes.createAt | date:"EEEE dd, MMMM yyyy"}}</td>
+                    <td> {{clientes.distrito.nombre}}</td>
                     <td>
                         <button class="btn btn-primary" aria-label="Example icon button with a home icon">
                             <mat-icon  fontIcon="edit" [routerLink]="['/clientes/form/',clientes.id]">Editar</mat-icon>
